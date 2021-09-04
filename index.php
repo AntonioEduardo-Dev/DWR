@@ -7,18 +7,35 @@ function responseJson($type, $message, $data = []) {
         "data" => $data
     ]);
 
+    unset($_SESSION);
     exit;
 }
 
 require "auth.php";
 
-function dadosIsset($indice, $vl_padrao = "") {
-    return isset($_POST[$indice]) && $_POST[$indice] != null ? $_POST[$indice] : $vl_padrao;
+function dadosIsset($indice, $metodo, $vl_padrao = "") {
+    switch ($metodo) {
+        case 'GET':
+            return isset($_GET[$indice]) && $_GET[$indice] != null ? $_GET[$indice] : $vl_padrao;
+            break;
+
+        case 'POST':
+            return isset($_POST[$indice]) && $_POST[$indice] != null ? $_POST[$indice] : $vl_padrao;
+            break;
+
+        case 'PUT':
+            return isset($_PUT[$indice]) && $_PUT[$indice] != null ? $_PUT[$indice] : $vl_padrao;
+            break;
+
+        case 'DELETE':
+            return isset($_DELETE[$indice]) && $_DELETE[$indice] != null ? $_DELETE[$indice] : $vl_padrao;
+            break;
+    }
 }
 
 if (isset($_POST['login']) || isset($_POST['loginAdmin'])) {
-    $email = dadosIsset('email');
-    $senha = dadosIsset('senha');
+    $email = dadosIsset('email', "POST");
+    $senha = dadosIsset('senha', "POST");
 
     if (empty($email) || empty($senha)) {
         responseJson("warning", "Informe todos os dados");
@@ -39,8 +56,7 @@ if (isset($http_header['Authorization']) && $http_header['Authorization'] != nul
     $auth = $http_header['Authorization'];
 
     if (tokenValidate($auth)) {
-        responseJson("success", "Iep");
-        
+        require "requests.php";
     } else {
         responseJson("error", "Token Inválido");
     }

@@ -37,13 +37,19 @@ function tokenValidate($auth) {
     $valid = hash_hmac('sha256', $header . "." . $payload, $user_sing, true);
     $valid = base64UrlEncode($valid);
 
-    return ($sign === $valid) ? true : false;
+    if ($sign === $valid) {
+        $_SESSION["DWR_typeUser"] = $data_payload->dados->typeUser;
+
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function login($user, $email, $senha) {
 
     // if ($dados = validarLogin($user . 's', $email, $senha)) {
-    if ($dados = ['id' => 1, "typeUser" => 'userKey']) {
+    if ($dados = ['id' => 1, "typeUser" => 'user']) {
         //Header Token
         $header = [
             'alg' => 'HS256',
