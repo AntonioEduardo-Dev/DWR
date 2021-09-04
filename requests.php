@@ -1,17 +1,37 @@
 <?php
 
+function listarInsumos() {
+    return [
+        ["id" => 1, "nome" => "dipirona"],
+        ["id" => 2, "nome" => "para-c-ta-mal"],
+        ["id" => 3, "nome" => "eno"],
+    ];
+}
+
 $routes = [
     "GET" => [
-        'listarInsumos' => [ "user", "admin" ],
+        'listarInsumos' => [
+            "users" => ["user", "admin"],
+            "class" => "Insumos"
+        ],
     ],
     "POST" => [
-        'cadastarInsumos' => [ "admin" ],
+        'cadastarInsumos' => [
+            "users" => ["admin"],
+            "class" => "Insumos"
+        ],
     ],
     "PUT" => [
-        'editarInsumos' => [ "admin" ],
+        'editarInsumos' => [
+            "users" => ["admin"],
+            "class" => "Insumos"
+        ],
     ],
     "DELETE" => [
-        'deletarInsumos' => [ "admin" ],
+        'deletarInsumos' => [
+            "users" => ["admin"],
+            "class" => "Insumos"
+        ],
     ],
 ];
 
@@ -23,10 +43,10 @@ if (empty($funcionalidade)) responseJson("error", "Informe a funcionalidade que 
 $metodos_disponiveis = $routes[$metodo];
 
 if (key_exists($funcionalidade, $metodos_disponiveis)) {
-    $permissoes = $metodos_disponiveis[$funcionalidade];
+    $permissoes = $metodos_disponiveis[$funcionalidade]['users'];
 
     if (in_array($_SESSION['DWR_typeUser'], $permissoes)) {
-        responseJson("success", "Ok");
+        responseJson("success", "Ok", $funcionalidade());
     } else {
         responseJson("error", "Funcionalidade Não Permitida");
     }
