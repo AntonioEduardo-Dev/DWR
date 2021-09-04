@@ -58,7 +58,7 @@ function login($user, $email, $senha) {
             'typ' => 'JWT'
         ];
 
-        $dados['user'] = $user;
+        $dados['typeUser'] = $user;
 
         //Payload - Content
         $payload = [
