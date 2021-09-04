@@ -7,7 +7,7 @@ function responseJson($type, $message, $data = []) {
         "data" => $data
     ]);
 
-    unset($_SESSION);
+    unset($_SESSION['DWR_typeUser']);
     exit;
 }
 
