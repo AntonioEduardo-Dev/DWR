@@ -47,14 +47,18 @@ function tokenValidate($auth) {
 }
 
 function login($user, $email, $senha) {
+    require "models/Auth.class.php";
 
-    // if ($dados = validarLogin($user . 's', $email, $senha)) {
-    if ($dados = ['id' => 1, "typeUser" => 'user']) {
+    $auth = new Auth();
+
+    if ($auth->login($user . 's', $email, $senha)) {
         //Header Token
         $header = [
             'alg' => 'HS256',
             'typ' => 'JWT'
         ];
+
+        $dados['user'] = $user;
 
         //Payload - Content
         $payload = [
