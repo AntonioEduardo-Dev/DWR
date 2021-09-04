@@ -43,10 +43,17 @@ if (empty($funcionalidade)) responseJson("error", "Informe a funcionalidade que 
 $metodos_disponiveis = $routes[$metodo];
 
 if (key_exists($funcionalidade, $metodos_disponiveis)) {
-    $permissoes = $metodos_disponiveis[$funcionalidade]['users'];
+    $dados_funcao = $metodos_disponiveis[$funcionalidade];
 
-    if (in_array($_SESSION['DWR_typeUser'], $permissoes)) {
-        responseJson("success", "Ok", $funcionalidade());
+    if (in_array($_SESSION['DWR_typeUser'], $dados_funcao['users'])) {
+
+        if ($dados_funcao['class'] == 'Insumos') {
+            require "models/Insumos.class.php";
+
+            $model = new Insumos($funcionalidade);
+        }
+
+        responseJson("success", "Sucesso", $model->executarFuncao());
     } else {
         responseJson("error", "Funcionalidade Não Permitida");
     }
