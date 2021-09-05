@@ -25,7 +25,7 @@ class Insumos {
 
             $consulta->bindValue(":nome", $this->data['nome']);
             $consulta->bindValue(":categoria", $this->data['categoria']);
-            $consulta->bindValue(":disponibilidade", $this->data['disponibilidade']);
+            $consulta->bindValue(":disponibilidade", ($this->data['disponibilidade'] == 'sim') ? 1 : 0);
             $consulta->bindValue(":descricao", $this->data['descricao']);
             $consulta->bindValue(":img", $this->data['img']);
 
@@ -65,7 +65,7 @@ class Insumos {
             $consulta->bindParam(":id", $this->data['id']);
             $consulta->bindValue(":nome", $this->data['nome']);
             $consulta->bindValue(":categoria", $this->data['categoria']);
-            $consulta->bindValue(":disponibilidade", $this->data['disponibilidade']);
+            $consulta->bindValue(":disponibilidade", ($this->data['disponibilidade'] == 'sim') ? 1 : 0);
             $consulta->bindValue(":descricao", $this->data['descricao']);
             $consulta->bindValue(":img", $this->data['img']);
 
