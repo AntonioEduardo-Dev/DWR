@@ -27,6 +27,7 @@ class ControllerPedidos {
 
             $data['insumos'] = $insumos;
         }
+        $data['id_user'] = $_SESSION["DWR_idUser"];
 
         $this->Pedidos = new Pedidos($data);
     }
@@ -46,6 +47,22 @@ class ControllerPedidos {
 
     private function listarPedidos() {
         $this->dataResponse = $this->Pedidos->listarPedidos();
+
+        if (empty($this->dataResponse)) {
+            $this->type = "warning";
+            $this->message = "Nenhum Pedido Encontrado";
+        } else {
+            $this->type = "success";
+            $this->message = "Pedidos Encontrados";
+        }
+
+        $this->retorno();
+    }
+
+    /*======================================================================================*/
+
+    private function listarPedidosUser() {
+        $this->dataResponse = $this->Pedidos->listarPedidosUser();
 
         if (empty($this->dataResponse)) {
             $this->type = "warning";

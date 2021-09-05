@@ -39,6 +39,7 @@ function tokenValidate($auth) {
 
     if ($sign === $valid) {
         $_SESSION["DWR_typeUser"] = $data_payload->dados->typeUser;
+        $_SESSION["DWR_idUser"] = $data_payload->dados->id;
 
         return true;
     } else {
@@ -51,7 +52,7 @@ function login($user, $email, $senha) {
 
     $auth = new Auth();
 
-    if ($auth->login($user . 's', $email, $senha)) {
+    if ($dados = $auth->login($user . 's', $email, $senha)) {
         //Header Token
         $header = [
             'alg' => 'HS256',
@@ -62,7 +63,7 @@ function login($user, $email, $senha) {
 
         //Payload - Content
         $payload = [
-            'iss' => 'ponto-delivery',
+            'iss' => 'drogaria-DW',
             'sub' => time(),
             'dados' => $dados
         ];

@@ -31,7 +31,7 @@
                 (!empty($id)) && $consulta->bindParam(":id", $id);
     
                 $consulta->execute();
-    
+                
                 if ($consulta->rowCount() > 0) {
                     return (!empty($id)) ? $consulta->fetch($connection::FETCH_ASSOC) : $consulta->fetchAll($connection::FETCH_ASSOC);
                 } else return [];
