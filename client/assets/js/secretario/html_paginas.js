@@ -6,9 +6,9 @@ function listagemInsumos(dados)
             <td>${dados.nome}</td>
             <td>${dados.disponibilidade == 1 ? 'Disponível' : 'Indisponível'}</td>
             <td>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Visualizar" onclick="visualizar(${dados.id})">
+                <a type="button" class="btn btn-tool" title="Visualizar" href="detalhe_insumo.html?id=${dados.id}">
                     <i class="far fa-eye"></i>
-                </button>
+                </a>
                 <a type="button" class="btn btn-tool" title="Editar" href="editar_insumo.html?id=${dados.id}">
                     <i class="far fa-edit"></i>
                 </a>

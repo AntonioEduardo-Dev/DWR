@@ -49,8 +49,8 @@ function editar()
 
     $.ajax({
         url,
-        method: 'PUT',
-        dados,
+        method: 'POST',
+        data: dados,
         headers
     })
     .done(function( retorno ) {
@@ -62,16 +62,7 @@ function editar()
             alert(retorno.message);
         } else {
             alert(retorno.message);
-
-            var dados = retorno.data;
-
-            $("#editar_nome_insumo").val(dados.nome);
-            $("#editar_categoria_insumo").val(dados.categoria);
-            $("#editar_disponibilidade_insumo").prop('checked', dados.disponibilidade == 'sim');
-            $("#editar_descricao_insumo").val(dados.descricao);
-            $("#editar_imagem_insumo").val(dados.imagem);
-
-            listar();
+            window.location = 'listar_insumo.html';
         }
     });
 }

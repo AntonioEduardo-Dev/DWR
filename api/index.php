@@ -25,10 +25,6 @@ function dadosIsset($indice, $metodo, $vl_padrao = "") {
             return isset($_POST[$indice]) && $_POST[$indice] != null ? $_POST[$indice] : $vl_padrao;
             break;
 
-        case 'PUT':
-            return isset($_PUT[$indice]) && $_PUT[$indice] != null ? $_PUT[$indice] : $vl_padrao;
-            break;
-
         case 'DELETE':
             return isset($_DELETE[$indice]) && $_DELETE[$indice] != null ? $_DELETE[$indice] : $vl_padrao;
             break;

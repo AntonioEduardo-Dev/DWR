@@ -34,8 +34,6 @@ $routes = [
             "campos_opcionais" => [],
             "class" => "Pedidos"
         ],
-    ],
-    "PUT" => [
         'editarInsumo' => [
             "users" => ["admin"],
             "campos_obrigatorios" => ["id", "nome", "categoria", "disponibilidade"],
