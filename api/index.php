@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function responseJson($type, $message, $data = []) {
     echo json_encode([
         "type" => $type,
