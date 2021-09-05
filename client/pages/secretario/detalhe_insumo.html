@@ -126,21 +126,9 @@
                   <p>Cadastrar</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="home.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Detalhes</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="home.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Editar</p>
-                </a>
-              </li> -->
             </ul>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -150,7 +138,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="listar_pedido.html" class="nav-link active">
+                <a href="listar_pedido.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Listar</p>
                 </a>
@@ -187,7 +175,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Listar Pedidos</h5>
+                <h5 class="card-title">Visualizar Insumo</h5>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -199,59 +187,60 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                <div class="row mt-1 mb-1">
+                  <div class="col-md-12 text-center">
+                    <img src="../../dist/img/AdminLTELogo.png" alt="" srcset="" disabled >
+                  </div>
+                  <!-- /.form group -->
+                </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="table-responsive">
-                      <table class="table m-0 text-center">
-                        <thead>
-                        <tr>
-                          <th>Ordem ID</th>
-                          <th>Nome pedido</th>
-                          <th>Ações</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>OR9842</td>
-                          <td>Call of Duty IV</td>
-                          <td>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="far fa-check-circle"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="far fa-times-circle"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>OR1848</td>
-                          <td>Samsung Smart TV</td>
-                          <td>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="far fa-check-circle"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="far fa-times-circle"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>OR7429</td>
-                          <td>iPhone 6 Plus</td>
-                          <td>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="far fa-check-circle"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                              <i class="far fa-times-circle"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        </tbody>
-                      </table>
+                    <div class="form-group">
+                      <label>Nome:</label>
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" placeholder="Ex: AstraZeneca" class="form-control datetimepicker-input" data-target="#reservationdate" disabled />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fas fa-pills"></i></div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.table-responsive -->
-                    <!-- /.chart-responsive -->
+                    <div class="row mt-1">
+                      <div class="col-md-6">
+                        <label>Categoria:</label>
+                          <div class="form-group">
+                            <select class="form-control select2" style="width: 100%;" disabled >
+                              <option selected="selected">Categoria 1</option>
+                              <option>Categoria 2</option>
+                            </select>
+                          </div>
+                      </div>
+                      <!-- /.form group -->
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Descrição:</label>
+                            <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                <input type="text" placeholder="Ex: Vacina covid-19" class="form-control datetimepicker-input" data-target="#reservationdatetime" disabled />
+                                <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fas fa-tablets"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <!-- /.form group -->
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
+                          <label for="customCheckbox1" class="custom-control-label">Disponibilidade</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 text-center mt-4 mb-3">
+                        <button type="submit" class="btn btn-primary btn-block">Editar Insumo</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <!-- /.row -->
