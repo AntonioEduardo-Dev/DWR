@@ -15,7 +15,7 @@ class Insumos {
     public function cadastarInsumo() {
         $conexao = new Conexao();
         $connection = $conexao->conectar();
-
+        
         try {
             $sql = "INSERT INTO insumos
                     VALUES (null, :nome, :categoria, :disponibilidade, :descricao, :img)
@@ -28,7 +28,7 @@ class Insumos {
             $consulta->bindValue(":disponibilidade", $this->data['disponibilidade']);
             $consulta->bindValue(":descricao", $this->data['descricao']);
             $consulta->bindValue(":img", $this->data['img']);
-
+            
             $consulta->execute();
 
             return ($consulta->rowCount() > 0) ? true : false;

@@ -24,14 +24,12 @@ function listar()
 
             case sucesso:
                 $("#tbody_insumos").html("");
-
-                var insumos = retorno.message;
+                
+                var insumos = retorno.data;
                 
                 $.each(insumos, function (idx, insumo) {
                     $("#tbody_insumos").append(listagemInsumos(insumo));
                 });
-
-                $('#dataTable').DataTable();
                 break;
         }
     });

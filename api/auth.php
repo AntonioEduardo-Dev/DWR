@@ -20,9 +20,9 @@ function base64UrlEncode($data)
 function tokenValidate($auth) {
     $bearer = explode(' ', $auth);
     $token = explode('.', $bearer[1]);
-    $header = $token[0];
-    $payload = $token[1];
-    $sign = $token[2];
+    if (isset($token[0])) $header = $token[0]; else return false;
+    if (isset($token[1])) $payload = $token[1]; else return false;
+    if (isset($token[2])) $sign = $token[2]; else return false;
 
     $data_payload = json_decode(base64_decode($payload));
 

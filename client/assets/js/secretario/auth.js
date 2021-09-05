@@ -23,7 +23,6 @@ function logar()
         data: dados
     })
     .done(function( retorno ) {
-        console.log(retorno);
         var retorno = JSON.parse(retorno);
 
         button.prop('disabled', false);
@@ -37,13 +36,12 @@ function logar()
             $("#email_usuario").val('');
             $("#senha_usuario").val('');
 
-            var dados = retorno.message;
-
+            var dados = retorno.data;
             localStorage.setItem("dwr_JWT", dados.JWT_token);
 
             alert('Login realizado');
 
-            window.location = 'home';
+            window.location = "home.html";
         }
     });
 }
