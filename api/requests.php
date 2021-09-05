@@ -14,6 +14,12 @@ $routes = [
             "campos_opcionais" => ["id"],
             "class" => "Pedidos"
         ],
+        'listarPedidosUser' => [
+            "users" => ["user"],
+            "campos_obrigatorios" => [],
+            "campos_opcionais" => ["id"],
+            "class" => "Pedidos"
+        ],
     ],
     "POST" => [
         'cadastarInsumo' => [

@@ -18,11 +18,12 @@ class Pedidos {
 
         try {
             $sql = "INSERT INTO pedidos
-                    VALUES (null, '".Date("Y-m-d H:i:s")."', :insumos, 'pendente')
+                    VALUES (null, :id_user, '".Date("Y-m-d H:i:s")."', :insumos, 'pendente')
             ";
 
             $consulta = $connection->prepare($sql);
 
+            $consulta->bindValue(":id_user", $this->data['id_user']);
             $consulta->bindValue(":insumos", $this->data['insumos']);
 
             $consulta->execute();
@@ -37,9 +38,39 @@ class Pedidos {
 
     /*======================================================================================*/
 
+    public function listarPedidosUser() {
+        $conexao = new Conexao();
+        $connection = $conexao->conectar();
+
+        try {
+            $sql = "SELECT * FROM pedidos
+                    WHERE id_user_fk = :id_user
+            ";
+
+            if (!empty($this->data['id'])) $sql .= " AND id = :id";
+
+            $consulta = $connection->prepare($sql);
+
+            $consulta->bindValue(":id_user", $this->data['id_user']);
+            (!empty($this->data['id'])) && $consulta->bindValue(":id", $this->data['id']);
+    
+            $consulta->execute();
+
+            if ($consulta->rowCount() > 0) {
+                return (!empty($this->data['id'])) ? $consulta->fetch($connection::FETCH_ASSOC) : $consulta->fetchAll($connection::FETCH_ASSOC);
+            } else return [];
+        } catch (PDOException $e) {
+            echo "Erro de autenticação: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Erro: " . $e->getMessage();
+        }
+    }
+
+    /*======================================================================================*/
+
     public function listarPedidos() {
         $conexao = new Conexao();
-
+        
         return $conexao->getAll("pedidos", $this->data['id']);
     }
 
