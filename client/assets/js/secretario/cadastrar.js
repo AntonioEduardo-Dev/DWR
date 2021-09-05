@@ -4,7 +4,7 @@ function cadastrar()
         funcionalidade : "cadastarInsumo",
         nome : $("#nome_insumo").val(),
         categoria : $("#categoria_insumo").val(),
-        disponibilidade : $('#disponibilidade_insumo').is(':checked') ? 1 : 'nao',
+        disponibilidade : $('#disponibilidade_insumo').is(':checked') ? 'sim' : 'nao',
         descricao : $("#descricao_insumo").val(),
         img : $("#imagem_insumo").val(),
     };
