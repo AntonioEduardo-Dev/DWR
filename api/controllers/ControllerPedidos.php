@@ -14,14 +14,15 @@ class ControllerPedidos {
     public function __construct($funcao, $data) {
         $this->funcao = $funcao;
 
-        if ($funcao == "cadastrarPedido" && is_array($data['insumos'] = json_decode($data['insumos']))) {
+        // if ($funcao == "cadastrarPedido" && is_array($data['insumos'] = json_decode($data['insumos']))) {
+        if ($funcao == "cadastrarPedido" && is_array($data['insumos'])) {
             $insumos = "";
 
             foreach ($data['insumos'] as $idx => $insumo) {
                 if ($idx > 0) $insumos .= ";";
 
-                $insumos .= "{$insumo->qtd}x {$insumo->nome}";
-                // $insumo .= "{$insumo['qtd']}x {$insumo['nome']}";
+                // $insumos .= "{$insumo->qtd}x {$insumo->nome}";
+                $insumo .= "{$insumo['qtd']}x {$insumo['nome']}";
             }
 
             $data['insumos'] = $insumos;
