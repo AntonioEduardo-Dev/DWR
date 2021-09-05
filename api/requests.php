@@ -5,28 +5,46 @@ $routes = [
         'listarInsumos' => [
             "users" => ["user", "admin"],
             "campos_obrigatorios" => [],
-            "campos_opcionais" => [],
+            "campos_opcionais" => ["id"],
             "class" => "Insumos"
+        ],
+        'listarPedidos' => [
+            "users" => ["admin"],
+            "campos_obrigatorios" => [],
+            "campos_opcionais" => ["id"],
+            "class" => "Pedidos"
         ],
     ],
     "POST" => [
-        'cadastarInsumos' => [
+        'cadastarInsumo' => [
             "users" => ["admin"],
-            "campos_obrigatorios" => ["name"],
-            "campos_opcionais" => ["description"],
+            "campos_obrigatorios" => ["nome", "categoria", "disponibilidade"],
+            "campos_opcionais" => ["descricao", "img"],
             "class" => "Insumos"
+        ],
+        'cadastrarPedido' => [
+            "users" => ["admin"],
+            "campos_obrigatorios" => ["insumos"],
+            "campos_opcionais" => [],
+            "class" => "Pedidos"
         ],
     ],
     "PUT" => [
-        'editarInsumos' => [
+        'editarInsumo' => [
             "users" => ["admin"],
-            "campos_obrigatorios" => ["id", "name"],
-            "campos_opcionais" => ["description"],
+            "campos_obrigatorios" => ["id", "nome", "categoria", "disponibilidade"],
+            "campos_opcionais" => ["descricao", "img"],
             "class" => "Insumos"
+        ],
+        'editarStatusPedido' => [
+            "users" => ["admin"],
+            "campos_obrigatorios" => ["id", "status"],
+            "campos_opcionais" => [],
+            "class" => "Pedidos"
         ],
     ],
     "DELETE" => [
-        'deletarInsumos' => [
+        'deletarInsumo' => [
             "users" => ["admin"],
             "campos_obrigatorios" => ["id"],
             "campos_opcionais" => [],
@@ -75,12 +93,18 @@ if (key_exists($funcionalidade, $metodos_disponiveis)) {
         }
 
         if ($dados_funcao['class'] == 'Insumos') {
-            require "models/Insumos.class.php";
+            require "controllers/ControllerInsumos.php";
 
-            $model = new Insumos($funcionalidade, $data);
+            $controller = new ControllerInsumos($funcionalidade, $data);
         }
 
-        responseJson("success", "Sucesso", $model->executarFuncao());
+        if ($dados_funcao['class'] == 'Pedidos') {
+            require "controllers/ControllerPedidos.php";
+
+            $controller = new ControllerPedidos($funcionalidade, $data);
+        }
+
+        $controller->executarFuncao();
     } else {
         responseJson("error", "Funcionalidade Não Permitida");
     }

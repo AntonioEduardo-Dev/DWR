@@ -4,49 +4,86 @@ require_once "Conexao.class.php";
 
 class Insumos {
 
-    private $funcao;
     private $data;
 
-    public function __construct($funcao, $data) {
-        $this->funcao = $funcao;
+    public function __construct($data) {
         $this->data = $data;
     }
 
     /*======================================================================================*/
 
-    private function cadastarInsumos() {
-        return $this->data;
-        return ['insumos'];
+    public function cadastarInsumo() {
+        $conexao = new Conexao();
+        $connection = $conexao->conectar();
+
+        try {
+            $sql = "INSERT INTO insumos
+                    VALUES (null, :nome, :categoria, :disponibilidade, :descricao, :img)
+            ";
+
+            $consulta = $connection->prepare($sql);
+
+            $consulta->bindValue(":nome", $this->data['nome']);
+            $consulta->bindValue(":categoria", $this->data['categoria']);
+            $consulta->bindValue(":disponibilidade", $this->data['disponibilidade']);
+            $consulta->bindValue(":descricao", $this->data['descricao']);
+            $consulta->bindValue(":img", $this->data['img']);
+
+            $consulta->execute();
+
+            return ($consulta->rowCount() > 0) ? true : false;
+        } catch (PDOException $e) {
+            echo "Erro de autenticação: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Erro: " . $e->getMessage();
+        }
     }
 
     /*======================================================================================*/
 
-    private function listarInsumos() {
-        return [
-            ["id" => 1, "nome" => "dipirona"],
-            ["id" => 2, "nome" => "para-c-ta-mal"],
-            ["id" => 3, "nome" => "eno"],
-        ];
+    public function listarInsumos() {
+        $conexao = new Conexao();
+
+        return $conexao->getAll("insumos", $this->data['id']);
     }
 
     /*======================================================================================*/
 
-    private function editarInsumos() {
-        return ['insumos'];
+    public function editarInsumo() {
+        $conexao = new Conexao();
+        $connection = $conexao->conectar();
+
+        try {
+            $sql = "UPDATE insumos 
+                    SET nome = :nome, categoria = :categoria, disponibilidade = :disponibilidade, 
+                        descricao = :descricao, img = :img
+                    WHERE id = :id
+            ";
+
+            $consulta = $connection->prepare($sql);
+
+            $consulta->bindParam(":id", $this->data['id']);
+            $consulta->bindValue(":nome", $this->data['nome']);
+            $consulta->bindValue(":categoria", $this->data['categoria']);
+            $consulta->bindValue(":disponibilidade", $this->data['disponibilidade']);
+            $consulta->bindValue(":descricao", $this->data['descricao']);
+            $consulta->bindValue(":img", $this->data['img']);
+
+            $consulta->execute();
+
+            return ($consulta->rowCount() > 0) ? true : false;
+        } catch (PDOException $e) {
+            echo "Erro de autenticação: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Erro: " . $e->getMessage();
+        }
     }
 
     /*======================================================================================*/
 
-    private function deletarInsumos() {
-        return ['insumos'];
-    }
-
-    /*======================================================================================*/
-
-    public function executarFuncao() {
-        $funcao = $this->funcao;
+    public function deletarInsumo() {
+        $conexao = new Conexao();
         
-        return $this->$funcao();
+        return ($conexao->delete($this->data['id'], "insumos")) ? true : false;
     }
-
 }
