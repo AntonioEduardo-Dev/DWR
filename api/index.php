@@ -2,6 +2,8 @@
 
 session_start();
 
+date_default_timezone_set("America/Sao_Paulo");
+
 function responseJson($type, $message, $data = []) {
     echo json_encode([
         "type" => $type,
