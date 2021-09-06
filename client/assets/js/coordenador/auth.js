@@ -5,7 +5,7 @@ function logar()
     var button = $("#btn-login");
 
     var dados = {
-        loginAdmin : true,
+        login : true,
         email : $("#email_usuario").val(),
         senha : $("#senha_usuario").val(),
     };
