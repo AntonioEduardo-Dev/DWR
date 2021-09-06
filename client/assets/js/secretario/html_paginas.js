@@ -48,7 +48,7 @@ function listagemPedidos(dados)
     return `
         <tr>
             <td>${dados.id}</td>
-            <td>${dados.id_user_fk}</td>
+            <td>${dados.nome}</td>
             <td>${dados.insumos}</td>
             <td>${botaoStatus((dados.status).toUpperCase(), status_pedidos[dados.status])}</td>
             <td>${dados.data_hora}</td>

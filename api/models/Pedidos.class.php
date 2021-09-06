@@ -70,6 +70,29 @@ class Pedidos {
 
     public function listarPedidos() {
         $conexao = new Conexao();
+        $connection = $conexao->conectar();
+
+        try {
+            $sql = "SELECT pedidos.*, nome FROM pedidos
+                    INNER JOIN users ON users.id = id_user_fk
+            ";
+
+            if (!empty($this->data['id'])) $sql .= " WHERE id = :id";
+
+            $consulta = $connection->prepare($sql);
+
+            (!empty($this->data['id'])) && $consulta->bindValue(":id", $this->data['id']);
+    
+            $consulta->execute();
+
+            if ($consulta->rowCount() > 0) {
+                return (!empty($this->data['id'])) ? $consulta->fetch($connection::FETCH_ASSOC) : $consulta->fetchAll($connection::FETCH_ASSOC);
+            } else return [];
+        } catch (PDOException $e) {
+            echo "Erro de autenticação: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Erro: " . $e->getMessage();
+        }
         
         return $conexao->getAll("pedidos", $this->data['id']);
     }
