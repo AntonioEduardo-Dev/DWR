@@ -2,7 +2,7 @@ function listar()
 {
     $(".box-icone-carregando").show();
 
-    var url = base_url + 'index.php?funcionalidade=listarPedidos';
+    var url = base_url + 'index.php?funcionalidade=listarInsumos';
     
     $.ajax({
         url,
@@ -23,12 +23,12 @@ function listar()
                 break;
 
             case sucesso:
-                $("#tbody_pedidos").html("");
+                $("#tbody_insumos").html("");
                 
-                var pedidos = retorno.data;
-
-                $.each(pedidos, function (idx, pedido) {
-                    $("#tbody_pedidos").append(listagemPedidos(pedido));
+                var insumos = retorno.data;
+                
+                $.each(insumos, function (idx, insumo) {
+                    $("#tbody_insumos").append(listagemInsumos(insumo));
                 });
                 break;
         }

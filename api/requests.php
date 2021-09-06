@@ -29,7 +29,7 @@ $routes = [
             "class" => "Insumos"
         ],
         'cadastrarPedido' => [
-            "users" => ["admin"],
+            "users" => ["user"],
             "campos_obrigatorios" => ["insumos"],
             "campos_opcionais" => [],
             "class" => "Pedidos"

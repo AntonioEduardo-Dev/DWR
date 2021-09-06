@@ -2,8 +2,8 @@ function listar()
 {
     $(".box-icone-carregando").show();
 
-    var url = base_url + 'index.php?funcionalidade=listarPedidos';
-    
+    var url = base_url + 'index.php?funcionalidade=listarPedidosUser';
+
     $.ajax({
         url,
         method: 'GET',
