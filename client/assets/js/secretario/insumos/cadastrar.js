@@ -33,8 +33,14 @@ function cadastrar()
 
         if (retorno.type == 'error') {
             alert(retorno.message);
+            if (nomeImagem != "imagem_indefinida.jpg") {
+                apagarImagem(nomeImagem);
+            }
         } else if (retorno.type == 'warning') {
             alert(retorno.message);
+            if (nomeImagem != "imagem_indefinida.jpg") {
+                apagarImagem(nomeImagem);
+            }
         } else {
             alert(retorno.message);
 
@@ -79,6 +85,14 @@ function inserirImagem()
         prod_imagem = "imagem_indefinida.jpg";
     }
     return (prod_imagem);
+}
+
+function apagarImagem(nomeImagem) {
+
+    var dados = {
+        apagarImagem : nomeImagem
+    }
+    $.post( "../../../api/Imagem.php", dados, function( data ) {});
 }
 
 $('#cadastrar_insumo').click(function() {

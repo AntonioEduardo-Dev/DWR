@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_FILES['imagemInsumoUpload'])){
     if (!empty($_FILES['imagemInsumoUpload'])){
 
@@ -28,5 +29,10 @@ if(isset($_FILES['imagemInsumoUpload'])){
     }else{
         echo 'false-|-Erro_inesperado!';
     }
+}
+
+if (isset($_POST['apagarImagem'])) {
+    $dir = "../client/dist/img/insumos/";
+    unlink($dir.$_POST['apagarImagem']);
 }
 ?>
