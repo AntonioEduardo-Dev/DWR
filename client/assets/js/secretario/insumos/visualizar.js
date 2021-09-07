@@ -19,12 +19,14 @@ function consultar()
             alert(retorno.message);
         } else {
             var dados = retorno.data;
+            var local = "../../dist/img/insumos/";
 
             $("#ver_nome_insumo").val(dados.nome);
             $("#ver_categoria_insumo").val(dados.categoria);
             $("#ver_disponibilidade_insumo").prop('checked', dados.disponibilidade == 1);
             $("#ver_descricao_insumo").val(dados.descricao);
-            $("#ver_imagem_insumo").val(dados.imagem);
+            $("#ver_imagem_insumo").attr("src",local+(dados.img));
+            $("#ver_imagem_insumo").attr("title",dados.nome);
 
             listar();
         }
