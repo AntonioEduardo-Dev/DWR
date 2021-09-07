@@ -30,7 +30,7 @@ function cadastrar()
 
         button.prop('disabled', false);
         i.removeClass().addClass(`fas fa-sign-in-alt`);
-        
+
         if (retorno.type == 'error') {
             alert(retorno.message);
         } else if (retorno.type == 'warning') {
@@ -74,21 +74,6 @@ function inserirImagem()
     }else{
         prod_imagem = "imagem_indefinida.jpg";
     }
-}
-
-function apagarImagem(nomeImagem) 
-{
-    var dados = {
-        apagarImagem : nomeImagem
-    }
-    
-    $.ajax({
-        url: '../../../api/controllers/ControllerImagem.php',
-        type: 'POST',
-        data: dados,
-        headers
-    }).done(function( retorno ) {
-    });
 }
 
 $('#cadastrar_insumo').click(function() {

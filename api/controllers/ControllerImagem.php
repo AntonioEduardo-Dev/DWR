@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_FILES['imagemInsumoUpload'])){
     if (!empty($_FILES['imagemInsumoUpload'])){
 
@@ -30,5 +29,4 @@ if(isset($_FILES['imagemInsumoUpload'])){
         echo 'false-|-Erro_inesperado!';
     }
 }
-
 ?>
