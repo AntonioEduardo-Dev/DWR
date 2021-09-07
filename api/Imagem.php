@@ -13,7 +13,7 @@ if(isset($_FILES['imagemInsumoUpload'])){
 
         if ($verifica > 0) {
             $novoNome = md5(time()).$ext; // definir novo nome
-            $dir = "../../client/dist/img/insumos/"; // definir diretório para upload da imagem
+            $dir = "../client/dist/img/insumos/"; // definir diretório para upload da imagem
 
             // upload imagem
             if (move_uploaded_file($_FILES['imagemInsumoUpload']['tmp_name'], $dir.$novoNome)) {

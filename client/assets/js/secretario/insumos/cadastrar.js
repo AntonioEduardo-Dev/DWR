@@ -51,12 +51,15 @@ function cadastrar()
 
 function inserirImagem() 
 {
+    var prod_imagem;
+
     if($('#imagem_insumo')[0].files[0]) {
         var data = new FormData();
         data.append('imagemInsumoUpload', $('#imagem_insumo')[0].files[0]);
         
         $.ajax({
-            url: '../../../api/controllers/ControllerImagem.php',
+            async: false,
+            url: '../../../api/Imagem.php',
             data: data,
             processData: false,
             contentType: false,
@@ -64,16 +67,18 @@ function inserirImagem()
             success: function(data) 
             {
                 var resultado = data.split('-|-');
+                
                 if (resultado[0] == "true") {
                     prod_imagem = resultado[1];
                 }else {
                     prod_imagem = "imagem_indefinida.jpg";
                 }
             }
-        });
+        })
     }else{
         prod_imagem = "imagem_indefinida.jpg";
     }
+    return (prod_imagem);
 }
 
 $('#cadastrar_insumo').click(function() {
