@@ -56,7 +56,7 @@ class Insumos {
         try {
             $sql = "UPDATE insumos 
                     SET nome = :nome, categoria = :categoria, disponibilidade = :disponibilidade, 
-                        descricao = :descricao, img = :img
+                        descricao = :descricao
                     WHERE id = :id
             ";
 
@@ -67,7 +67,7 @@ class Insumos {
             $consulta->bindValue(":categoria", $this->data['categoria']);
             $consulta->bindValue(":disponibilidade", ($this->data['disponibilidade'] == 'sim') ? 1 : 0);
             $consulta->bindValue(":descricao", $this->data['descricao']);
-            $consulta->bindValue(":img", $this->data['img']);
+            // $consulta->bindValue(":img", $this->data['img']);
 
             $consulta->execute();
 
