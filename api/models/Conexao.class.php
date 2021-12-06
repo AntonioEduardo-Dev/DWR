@@ -5,7 +5,7 @@
         function conectar(){
             $host= "mysql:host=localhost;dbname=dwr";
             $user= "root";
-            $pass= "123456";
+            $pass= "";
 
             try {
                 $pdo = new PDO($host, $user, $pass);
